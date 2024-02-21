@@ -48,4 +48,15 @@ class DataBase:
             result = self.cursor.execute(f"SELECT COUNT(refer_id) FROM users WHERE refer_id = (?) GROUP BY flag HAVING flag= 'True'", (user_id,))
             result = result.fetchall()
             result = result if result is not None else 0
+            if len(result)==0:
+                return 0
             return result[0][0]
+        
+    def get_all_users(self):
+        with self.connection:
+            result = self.cursor.execute(f"SELECT * FROM users")
+            result = result.fetchall()
+            result = result if result is not None else 0
+            print(result)
+            return result
+        

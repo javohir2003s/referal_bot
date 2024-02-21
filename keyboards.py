@@ -11,3 +11,14 @@ main_menu = ReplyKeyboardMarkup(keyboard=[
     resize_keyboard=True,
     is_persistent=True
 )
+
+
+admin_menu = ReplyKeyboardMarkup(keyboard=[
+    [
+        KeyboardButton(text="A'zolar"),
+        
+    ]
+],
+    resize_keyboard=True,
+    is_persistent=True
+)
