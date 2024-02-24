@@ -97,6 +97,7 @@ async def calback(callback: types.CallbackQuery, bot: Bot):
     
     if user_status.status in ['member', 'administrator', 'creator']:
         db_objects.update_user(user_id=callback.from_user.id)
+        await callback.message.delete()
         await callback.message.answer('Botdan foydalanish mumkin',  reply_markup=main_menu)
         
     else:
@@ -262,8 +263,10 @@ async def start_command(message: Message, bot: Bot):
                 await message.answer("Botdan foydalanish uchun kanalga a'zo bo'ling", reply_markup=inline)
             
        
-@dp.callback_query(F.data == "azo")    
+@dp.callback_query(F.data == "azo")  
+  
 async def calback(callback: types.CallbackQuery, bot: Bot):
+    await callback.answer(cache_time=60)
     user_status = await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=callback.from_user.id)
     
     if user_status.status in ['member', 'administrator', 'creator']:
