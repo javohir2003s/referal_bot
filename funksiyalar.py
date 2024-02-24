@@ -4,7 +4,7 @@ from aiogram.fsm.context import FSMContext
 from sqlite_db import DataBase
 from environs import Env
 from loader import dp
-
+import asyncio
 from keyboards import main_menu, admin_menu
 
 env = Env()
@@ -89,6 +89,7 @@ async def start_command(message: Message, bot: Bot):
                     )
                     
                 await message.answer("Botdan foydalanish uchun kanalga a'zo bo'ling", reply_markup=inline)
+         
             
        
 @dp.callback_query(F.data == "azo")  
@@ -96,7 +97,9 @@ async def start_command(message: Message, bot: Bot):
 async def calback(callback: types.CallbackQuery, bot: Bot):
     await callback.answer(cache_time=60)
     user_status = await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=callback.from_user.id)
+
     
+    await callback.message.delete()
     if user_status.status in ['member', 'administrator', 'creator']:
         db_objects.update_user(user_id=callback.from_user.id)
         await callback.message.answer('Botdan foydalanish mumkin',  reply_markup=main_menu)
