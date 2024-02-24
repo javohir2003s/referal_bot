@@ -50,7 +50,6 @@ async def start_command(message: Message, bot: Bot):
             await message.answer('Botdan foydalanish mumkin',  reply_markup=main_menu)
         
         else:
-            print(db_objects.get_user(message.from_user.id))
             if db_objects.get_user(message.from_user.id) and db_objects.get_user(message.from_user.id)[4] == "True":
                 await message.answer("Asosiy menudasiz!", reply_markup=main_menu)
                 

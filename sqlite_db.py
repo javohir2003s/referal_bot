@@ -57,6 +57,5 @@ class DataBase:
             result = self.cursor.execute(f"SELECT * FROM users")
             result = result.fetchall()
             result = result if result is not None else 0
-            print(result)
             return result
         

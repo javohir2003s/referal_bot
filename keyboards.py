@@ -4,8 +4,9 @@ main_menu = ReplyKeyboardMarkup(keyboard=[
     [
         KeyboardButton(text="Referal havola"),
         KeyboardButton(text="Mening ballarim"),
-        KeyboardButton(text="Link olish"),
-    ]
+        
+    ],
+    [KeyboardButton(text="Link olish"),]
     
 ],
     resize_keyboard=True,
