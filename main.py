@@ -9,13 +9,14 @@ env = Env()
 env.read_env()
 
 
+ADMINS = int(env("ADMINS"))
 
 
 async def startup_answer(bot: Bot):
-    await bot.send_message(chat_id=env("ADMINS"), text="Bot ishga tushdi")
+    await bot.send_message(chat_id=ADMINS, text="Bot ishga tushdi")
     
 async def shutdown_answer(bot: Bot):
-    await bot.send_message(chat_id=env("ADMINS"), text="Bot to'xtadi")
+    await bot.send_message(chat_id=ADMINS, text="Bot to'xtadi")
     
 
 async def start():
